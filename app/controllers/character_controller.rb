@@ -6,6 +6,8 @@ class CharacterController < ApplicationController
   def create
     @character = Character.new(character_params)
 
+    @character.television_show_id = params[:id]
+
     if @character.save
       flash[:notice] = "Success!"
       redirect_to "/television_shows/#{params[:id]}"
