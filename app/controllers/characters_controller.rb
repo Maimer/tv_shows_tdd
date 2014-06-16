@@ -17,7 +17,7 @@ class CharactersController < ApplicationController
     @character.television_show_id = params[:television_show_id]
 
     if @character.save
-      flash[:notice] = "Success Character Saved!"
+      flash[:notice] = "Success, Character Saved!"
       redirect_to @television_show
     else
       flash.now[:notice] = "Your character couldn't be saved."
