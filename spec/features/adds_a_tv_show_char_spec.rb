@@ -31,7 +31,7 @@ feature 'user adds a new TV show character', %Q{
 
     character = Character.new(attrs)
 
-    visit "/television_shows/#{show.id}/characters/new"
+    visit "/television_shows/#{show.id}"
     fill_in 'Name', with: character.name
     fill_in 'Actor', with: character.actor
     fill_in 'Description', with: character.description
@@ -61,14 +61,14 @@ feature 'user adds a new TV show character', %Q{
 
     character = Character.new(attrs)
 
-    visit "/television_shows/#{show.id}/characters/new"
+    visit "/television_shows/#{show.id}"
     click_on 'Submit'
 
     expect(page).to_not have_content 'Success'
     expect(page).to have_content "can't be blank"
   end
 
-  scenario 'user cannot add a character that is already in the database'
+  scenario 'user cannot add a character that is already in the database' do
     tv_attrs = {
       title: 'Game of Thrones',
       network: 'HBO',
@@ -88,7 +88,7 @@ feature 'user adds a new TV show character', %Q{
 
     character = Character.new(attrs)
 
-    visit "/television_shows/#{show.id}/characters/new"
+    visit "/television_shows/#{show.id}"
     fill_in 'Name', with: character.name
     fill_in 'Actor', with: character.actor
     fill_in 'Description', with: character.description
