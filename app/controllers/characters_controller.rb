@@ -25,6 +25,14 @@ class CharactersController < ApplicationController
     end
   end
 
+  def destroy
+    @television_show = TelevisionShow.find(params[:television_show_id])
+    @character = Character.find(params[:id])
+    @character.destroy
+    flash[:notice] = 'Success, Character Deleted!'
+    redirect_to @television_show
+  end
+
   private
 
   def character_params

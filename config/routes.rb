@@ -4,6 +4,6 @@ TvShows::Application.routes.draw do
   resources :characters, only: [:index]
 
   resources :television_shows do
-    resources :characters, only: [:new, :create]
+    resources :characters, only: [:new, :create, :destroy]
   end
 end

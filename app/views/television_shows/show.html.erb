@@ -35,6 +35,7 @@
   <% @television_show.characters.each do |c| %>
     <li>
       <%= c.name %> - <%= c.actor %> - <%= c.description %>
+      <%= link_to 'Remove', television_show_character_path(@television_show, c), method: :delete %>
     </li>
   <% end %>
 </ul>
