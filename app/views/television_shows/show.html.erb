@@ -10,14 +10,31 @@
 </div>
 
 <%= form_for [@television_show, @character] do |f| %>
-  <%= f.label :name %>:
-  <%= f.text_area :name %><br>
 
-  <%= f.label :actor %>:
-  <%= f.text_area :actor %><br>
+  <% if @character.errors.any? %>
+    <ul>
+      <% @character.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-  <%= f.label :description %>:
-  <%= f.text_area :description %><br>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
 
-  <%= f.submit %>
+  <%= f.label :actor %>
+  <%= f.text_field :actor %><br>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %><br>
+
+  <%= f.submit 'Submit' %>
 <% end %>
+
+<ul>
+  <% @television_show.characters.each do |c| %>
+    <li>
+      <%= c.name %> - <%= c.actor %> - <%= c.description %>
+    </li>
+  <% end %>
+</ul>

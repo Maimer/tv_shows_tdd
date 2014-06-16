@@ -21,7 +21,7 @@ feature 'user adds a new TV show character', %Q{
       synopsis: 'Seven noble families fight for control of the mythical land of Westeros.'
     }
 
-    show = TelevisionShow.new(tv_attrs)
+    show = TelevisionShow.create(tv_attrs)
 
     attrs = {
       name: 'Jon Snow',
@@ -51,7 +51,7 @@ feature 'user adds a new TV show character', %Q{
       synopsis: 'Seven noble families fight for control of the mythical land of Westeros.'
     }
 
-    show = TelevisionShow.new(tv_attrs)
+    show = TelevisionShow.create(tv_attrs)
 
     attrs = {
       name: 'Jon Snow',
@@ -76,7 +76,7 @@ feature 'user adds a new TV show character', %Q{
       synopsis: 'Seven noble families fight for control of the mythical land of Westeros.'
     }
 
-    show = TelevisionShow.new(tv_attrs)
+    show = TelevisionShow.create(tv_attrs)
 
     attrs = {
       name: 'Jon Snow',
@@ -84,7 +84,9 @@ feature 'user adds a new TV show character', %Q{
       description: 'Knows nothing'
     }
 
-    Character.create(attrs)
+    character1 = Character.new(attrs)
+    character1.television_show_id = show.id
+    character1.save
 
     character = Character.new(attrs)
 
