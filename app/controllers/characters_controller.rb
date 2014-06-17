@@ -16,11 +16,11 @@ class CharactersController < ApplicationController
 
     @character.television_show_id = params[:television_show_id]
 
-    # binding.pry
+    @actor = Actor.find_by(name: params[:character][:actor])
 
-    @character.actor_id = Actor.find_by(name: params[:character][:actor]).id
-
-    # binding.pry
+    if @actor != nil
+      @character.actor_id = @actor.id
+    end
 
     if @character.save
       flash[:notice] = "Success, Character Saved!"

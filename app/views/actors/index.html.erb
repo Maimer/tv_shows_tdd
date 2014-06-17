@@ -1,0 +1,27 @@
+<h3>All Actors</h3>
+
+<ul>
+  <% @actors.each do |actor| %>
+    <li>
+      <%= "#{actor.name}" %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_for @actor do |f| %>
+
+  <% if @actor.errors.any? %>
+    <ul>
+      <% @actor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.submit 'Submit' %>
+<% end %>
