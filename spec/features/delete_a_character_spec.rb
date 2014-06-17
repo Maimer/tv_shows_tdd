@@ -20,9 +20,15 @@ feature 'delete a character', %Q{
 
     show = TelevisionShow.create(tv_attrs)
 
+    actor_attrs = {
+      name: 'Kit Harrington'
+    }
+
+    actor = Actor.create(actor_attrs)
+
     attrs = {
       name: 'Jon Snow',
-      actor: 'Kit Harrington',
+      actor: actor,
       description: 'Knows nothing'
     }
 

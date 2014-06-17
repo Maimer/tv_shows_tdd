@@ -17,14 +17,28 @@ feature 'view a list of characters', %Q{
       { title: 'Fargo', network: 'FX' }
     ]
 
+    actors = []
+    actor_attrs = [
+      { name: 'Kit Harrington' },
+      { name: 'Sean Bean' },
+      { name: 'Martin Freeman'},
+      { name: 'Billy Bob Thorton'}
+    ]
+
+    actor_attrs.each do |attrs|
+      actor = Actor.new(attrs)
+      actor.save
+      actors << actor
+    end
+
     characters = []
     got_character_attrs = [
-      { name: 'Jon Snow', actor: 'Kit Harrington', description: 'Knows nothing' },
-      { name: 'Ned Stark', actor: 'Sean Bean', description: 'Dead' }
+      { name: 'Jon Snow', actor: actors[0], description: 'Knows nothing' },
+      { name: 'Ned Stark', actor: actors[1], description: 'Dead' }
     ]
     fargo_character_attrs = [
-      { name: 'Lester Nygaard', actor: 'Martin Freeman', description: 'Doncha know' },
-      { name: 'Lorne Malvo', actor: 'Billy Bob Thorton', description: 'Is this waht you want?' }
+      { name: 'Lester Nygaard', actor: actors[2], description: 'Doncha know' },
+      { name: 'Lorne Malvo', actor: actors[3], description: 'Is this waht you want?' }
     ]
 
     show_attrs.each do |attrs|

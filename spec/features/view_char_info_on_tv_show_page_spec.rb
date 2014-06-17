@@ -20,10 +20,22 @@ feature 'view character info on tv show page', %Q{
 
     show = TelevisionShow.create(tv_attrs)
 
+    actors = []
+    actor_attrs = [
+      { name: 'Kit Harrington' },
+      { name: 'Sean Bean' }
+    ]
+
+    actor_attrs.each do |attrs|
+      actor = Actor.new(attrs)
+      actor.save
+      actors << actor
+    end
+
     characters = []
     character_attrs = [
-      { name: 'Jon Snow', actor: 'Kit Harrington', description: 'Knows nothing' },
-      { name: 'Ned Stark', actor: 'Sean Bean', description: 'Dead' }
+      { name: 'Jon Snow', actor: actors[0], description: 'Knows nothing' },
+      { name: 'Ned Stark', actor: actors[1], description: 'Dead' }
     ]
 
     character_attrs.each do |attrs|
@@ -40,7 +52,7 @@ feature 'view character info on tv show page', %Q{
     expect(page).to have_content show.synopsis
     characters.each do |char|
       expect(page).to have_content char.name
-      expect(page).to have_content char.actor
+      expect(page).to have_content char.actor.name
       expect(page).to have_content char.description
     end
   end
