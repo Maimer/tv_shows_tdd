@@ -16,6 +16,12 @@ class CharactersController < ApplicationController
 
     @character.television_show_id = params[:television_show_id]
 
+    # binding.pry
+
+    @character.actor_id = Actor.find_by(name: params[:character][:actor]).id
+
+    # binding.pry
+
     if @character.save
       flash[:notice] = "Success, Character Saved!"
       redirect_to @television_show
@@ -36,6 +42,6 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:name, :actor, :description)
+    params.require(:character).permit(:name, :description)
   end
 end

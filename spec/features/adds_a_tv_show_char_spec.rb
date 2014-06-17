@@ -23,9 +23,15 @@ feature 'user adds a new TV show character', %Q{
 
     show = TelevisionShow.create(tv_attrs)
 
+    actor_attrs = {
+      name: 'Kit Harrington'
+    }
+
+    actor = Actor.create(actor_attrs)
+
     attrs = {
       name: 'Jon Snow',
-      actor: 'Kit Harrington',
+      actor: actor,
       description: 'Knows nothing'
     }
 
@@ -33,13 +39,13 @@ feature 'user adds a new TV show character', %Q{
 
     visit "/television_shows/#{show.id}"
     fill_in 'Name', with: character.name
-    fill_in 'Actor', with: character.actor
+    fill_in 'Actor', with: actor.name
     fill_in 'Description', with: character.description
     click_on 'Submit'
 
     expect(page).to have_content 'Success'
     expect(page).to have_content character.name
-    expect(page).to have_content character.actor
+    expect(page).to have_content character.actor.name
     expect(page).to have_content character.description
   end
 
